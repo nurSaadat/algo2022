@@ -1,0 +1,66 @@
+defined as follows: 
+	1. given the coordinates x,y of N points in the plane (the vertices), 
+	2. and a weight function w(u,v) defined for all pairs of points (the arcs).
+	
+
+	
+Goal:
+	find the simple loop of minimum weight that visits all the N points
+	- Note: 
+		1. The weight function w(u,v) is defined as the Euclidean  or Geographic distance between the points u and v.
+		2. The weight function is symmetric and respects the triangular inequality.
+
+
+
+Constructive heuristics: 
+	choose two of the following constructive heuristics and implement them: 
+		1. Nearest Neighbor, 
+		2. Closest Insertion, 
+		3. Farthest Insertion, 
+		4. Random Insertion, 
+		5. Cheapest Insertion. 	
+2-approximate algorithm: 
+	Implement the 2-approximate algorithm based on the minimum spanning tree.
+
+
+
+Dataset:
+	1- The dataset contains 13 graphs.
+	2- The first lines of each file contain some information about the instance,such as :
+		the number of N points (ranging from 14 to 1000) 
+		----> using Efficient Kruskal because it is the most optimized between all those 3 algs.
+	3- and the type of coordinates: Euclidean (EUC_2D) or Geographic (GEO). 
+	4- he lines after NODE_COORD_SECTION contain the vertices of the graph: 
+		each line includes a vertex ID (unique integer) followed by the x and y coordinates which. 
+		The three values are separated by spaces. 
+
+
+
+Computing distances:
+	1. For converting coordinate input to longitude and latitude in radian:
+
+	  PI = 3.141592;
+
+	  deg = (int) x[i];
+	  min = x[i]- deg;
+	  rad = PI * (deg + 5.0 * min/ 3.0) / 180.0;
+
+	2. For computing the geographical distance:
+
+	 RRR = 6378.388;
+
+	 q1 = cos( longitude[i] - longitude[j] );
+	 q2 = cos( latitude[i] - latitude[j] );
+	 q3 = cos( latitude[i] + latitude[j] );
+	 dij = (int) ( RRR * acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3) ) + 1.0);
+
+
+
+-How:
+	1. read the instructions
+	2. parsing the dataset
+	3. implement the easiest one(nearest neighbor)
+	4. implement the Random Insertion
+	5. finish 2 approximation algo(the Prim's alg)
+	6. writing the report
+	7. 
